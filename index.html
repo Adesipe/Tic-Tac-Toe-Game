@@ -4,81 +4,89 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic-Tac-Toe</title>
+    <title>Javascript Form Validation</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="sub-container">
-        <div class="title">
-            <h1>Tic-Tac-Toe</h1>
+    <div>
+        <div class="sub-container">
+            <div class="title">
+                <h1>Tic-Tac-Toe</h1>
+            </div>
+            <div id="countdown" class="countdown">
+                <span>Total Time: <br> ()</span>
+            </div>
+            <div class="board" id="board">
+                <div class="tile" id="box1"></div>
+                <div class="tile" id="box2"></div>
+                <div class="tile" id="box3"></div>
+                <div class="tile" id="box4"></div>
+                <div class="tile" id="box5"></div>
+                <div class="tile" id="box6"></div>
+                <div class="tile" id="box7"></div>
+                <div class="tile" id="box8"></div>
+                <div class="tile" id="box9"></div>
+            </div>
         </div>
-        <div id="countdown" class="countdown">
-            <span>Total Time: <br> ()</span>
-        </div>
-        <div class="board" id="board">
-            <div class="tile" id="box1"></div>
-            <div class="tile" id="box2"></div>
-            <div class="tile" id="box3"></div>
-            <div class="tile" id="box4"></div>
-            <div class="tile" id="box5"></div>
-            <div class="tile" id="box6"></div>
-            <div class="tile" id="box7"></div>
-            <div class="tile" id="box8"></div>
-            <div class="tile" id="box9"></div>
-        </div>
-    </div>
-    <script>
-        const startingMinutes = 2;
-        let time = startingMinutes * 60;
-
-        const countdownEl = document.getElementById('countdown');
-
-        setInterval(updateCountdown, 1000);
-
-        function updateCountdown() {
-            const minutes = Math.floor(time / 60);
-            let seconds = time % 60;
-
-            seconds = seconds < 2 ? '0' + seconds : seconds;
-
-
-            countdownEl.innerHTML = `${minutes}: ${seconds}`;
-            time--;
-        }
-        tiles = document.querySelectorAll('.tile')
-        tiles = Array.from(tiles)
-
-        let currentPlayer = "X"
-
-        let winningCombinations = [
-            [0, 1, 2],
-            [3, 4, 5],
-            [6, 7, 8],
-            [0, 3, 6],
-            [1, 4, 7],
-            [2, 5, 8],
-            [0, 4, 8],
-            [2, 4, 6],
-        ]
-
-        function checkForWinner() {
-            winningCombinations.forEach(function(combination) {
-                let check = combination.every(idx => tiles[idx].innerText.trim() == currentPlayer)
-                if (check) {
-                    alert(currentPlayer + " has won")
+        <script>
+            const startingMinutes = 2;
+            let time = startingMinutes * 60;
+    
+            const countdownEl = document.getElementById('countdown');
+    
+            setInterval(updateCountdown, 1000);
+    
+            function updateCountdown() {
+                const minutes = Math.floor(time / 60);
+                let seconds = time % 60;
+    
+                seconds = seconds < 2 ? '0' + seconds : seconds;
+    
+    
+                countdownEl.innerHTML = `${minutes}: ${seconds}`;
+                time--;
+            }
+            tiles = document.querySelectorAll('.tile')
+            tiles = Array.from(tiles)
+    
+            let currentPlayer = "X"
+    
+            let winningCombinations = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6],
+            ]
+            
+            function check() {
+                if (countdown <= 2) {
+                    alert(currentPlayer + " has a TIE with O")
                 }
-            })
-        }
+            }
 
-        tiles.forEach(function(tile){
-            tile.addEventListener('click', function() {
-                if(tile.innerText.trim() != "") return
-                checkForWinner()
-                tile.innerText = currentPlayer
-                currentPlayer = currentPlayer == "X" ? "O" : "X"
+            function checkForWinner() {
+                winningCombinations.forEach(function(combination) {
+                    let check = combination.every(idx => tiles[idx].innerText.trim() == currentPlayer)
+                    if (check) {
+                        alert(currentPlayer + " has won")
+                    }
+                })
+            }
+    
+            tiles.forEach(function(tile){
+                tile.addEventListener('click', function() {
+                    if(tile.innerText.trim() != "") return
+                    checkForWinner()
+                    tile.innerText = currentPlayer
+                    currentPlayer = currentPlayer == "X" ? "O" : "X"
+                })
             })
-        })
-
-    </script>
+    
+        </script>
+    </div>
 </body>
 </html>
