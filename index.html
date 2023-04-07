@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>Javascript Form Validation</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div>
         <div class="sub-container">
@@ -31,26 +33,26 @@
         <script>
             const startingMinutes = 2;
             let time = startingMinutes * 60;
-    
+
             const countdownEl = document.getElementById('countdown');
-    
+
             setInterval(updateCountdown, 1000);
-    
+
             function updateCountdown() {
                 const minutes = Math.floor(time / 60);
                 let seconds = time % 60;
-    
+
                 seconds = seconds < 2 ? '0' + seconds : seconds;
-    
-    
+
+
                 countdownEl.innerHTML = `${minutes}: ${seconds}`;
                 time--;
             }
             tiles = document.querySelectorAll('.tile')
             tiles = Array.from(tiles)
-    
+
             let currentPlayer = "X"
-    
+
             let winningCombinations = [
                 [0, 1, 2],
                 [3, 4, 5],
@@ -61,7 +63,7 @@
                 [0, 4, 8],
                 [2, 4, 6],
             ]
-            
+
             function check() {
                 if (countdown <= 2) {
                     alert(currentPlayer + " has a TIE with O")
@@ -69,24 +71,25 @@
             }
 
             function checkForWinner() {
-                winningCombinations.forEach(function(combination) {
+                winningCombinations.forEach(function (combination) {
                     let check = combination.every(idx => tiles[idx].innerText.trim() == currentPlayer)
                     if (check) {
                         alert(currentPlayer + " has won")
                     }
                 })
             }
-    
-            tiles.forEach(function(tile){
-                tile.addEventListener('click', function() {
-                    if(tile.innerText.trim() != "") return
+
+            tiles.forEach(function (tile) {
+                tile.addEventListener('click', function () {
+                    if (tile.innerText.trim() != "") return
                     checkForWinner()
                     tile.innerText = currentPlayer
                     currentPlayer = currentPlayer == "X" ? "O" : "X"
                 })
             })
-    
+
         </script>
     </div>
 </body>
+
 </html>
